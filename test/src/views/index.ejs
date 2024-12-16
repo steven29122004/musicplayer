@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Playlist</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Music Playlist</h1>
+        </header>
+
+        <div class="player" id="player"></div>
+
+        <div class="add-song">
+            <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL">
+            <button id="addSongBtn">Add Song</button>
+        </div>
+
+        <div class="filters">
+            <button id="filterToggleBtn">🔍</button> <!-- Filter icon -->
+            <div id="filterOptions" style="display: none;">
+                <h2 id="filterText" style="display: none;">Filter Songs</h2> <!-- Initially hidden -->
+                <label for="mood">Mood:</label>
+                <select id="mood" onchange="filterSongs()">
+                    <option value="">Any</option>
+                    <option value="happy">Happy</option>
+                    <option value="sad">Sad</option>
+                    <option value="chill">Chill</option>
+                </select>
+            </div>
+        </div>
+
+        <h2>Available Songs</h2>
+        <ul id="songList" class="songs-list"></ul>
+
+        <div id="playlistSection" style="display: none;">
+            <h2>Your Playlists</h2>
+            <div id="happySongs" class="playlist" style="display: none;">
+                <h3>Happy Songs</h3>
+                <ul></ul>
+            </div>
+            <div id="sadSongs" class="playlist" style="display: none;">
+                <h3>Sad Songs</h3>
+                <ul></ul>
+            </div>
+            <div id="chillSongs" class="playlist" style="display: none;">
+                <h3>Chill Songs</h3>
+                <ul></ul>
+            </div>
+        </div>
+
+        <div id="addToPlaylistModal" class="modal" style="display: none;">
+            <h2>Add to Playlist</h2>
+            <label for="moodSelect">Select Mood:</label>
+            <select id="moodSelect">
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="chill">Chill</option>
+            </select>
+            <button id="confirmAddToPlaylistBtn">Confirm</button>
+            <button id="cancelAddToPlaylistBtn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="/script.js"></script>
+</body>
+</html>
