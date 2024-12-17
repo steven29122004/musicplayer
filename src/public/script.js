@@ -111,6 +111,13 @@ function addToPlaylist(song, mood) {
     const playlistContainer = document.getElementById(`${mood}Songs`).getElementsByTagName("ul")[0];
     const newRow = document.createElement("li"); // Create a new list item for the song
     newRow.textContent = song.name; // Set the text content to the song name
+
+    // Create a play button for the song
+    const playButton = document.createElement('button');
+    playButton.textContent = "Play"; // Button text
+    playButton.addEventListener('click', () => playSong(song.audioSrc)); // Play song on click
+
+    newRow.appendChild(playButton); // Add play button to the new list item
     playlistContainer.appendChild(newRow); // Append the new song to the appropriate playlist
 
     // Show the playlist section if it has songs
@@ -120,19 +127,26 @@ function addToPlaylist(song, mood) {
     document.getElementById('playlistSection').style.display = 'block';
 }
 
-// Function to toggle visibility of playlist sections based on song count
-function togglePlaylistVisibility(mood) {
-    const playlistContainer = document.getElementById(`${mood}Songs`);
-    const songList = playlistContainer.getElementsByTagName("ul")[0];
-
-    // Check if there are any songs in the mood playlist
-    if (songList.children.length > 0) {
-        playlistContainer.style.display = 'block'; // Show the section if it has songs
+// Function to play a song using the video ID
+function playSong(videoId) {
+    console.log(`Playing video with ID: ${videoId}`); // Log the video ID for debugging
+    if (player) { // Check if the player is initialized
+        player.loadVideoById(videoId); // Load and play the video by its ID
+        document.getElementById('player').style.display = 'block'; // Show the player
     } else {
-        playlistContainer.style.display = 'none'; // Hide the section if no songs
+        console.error("YouTube player is not initialized."); // Log an error if player is not ready
     }
 }
 
+// Function to show or hide the playlist based on its content
+function togglePlaylistVisibility(mood) {
+    const playlistContainer = document.getElementById(`${mood}Songs`);
+    if (playlistContainer.getElementsByTagName("ul")[0].children.length > 0) {
+        playlistContainer.style.display = 'block'; // Show the playlist if it has songs
+    } else {
+        playlistContainer.style.display = 'none'; // Hide if no songs
+    }
+}
 // Function to filter songs based on user input
 function filterSongs() {
     const moodFilter = document.getElementById('mood').value; // Get the selected mood filter

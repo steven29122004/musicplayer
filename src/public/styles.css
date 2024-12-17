@@ -67,8 +67,9 @@ button {
     font-size: 16px;
     background-color: rgb(69, 170, 204);
     color: white;
-    border: none;
+    border-radius: 9px;
     cursor: pointer;
+
 }
 
 button:hover {
@@ -148,3 +149,21 @@ li {
     transition: 2s;
     margin-left: 5px;
 }
+
+#playlistSection button{
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: rgb(69, 170, 204);
+
+}
+
+#playlistSection button:hover{
+    font-size: 18px;
+    background-color: rgb(87, 182, 182);
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 8px lightblue;
+    transition: 2s;
+    margin-left: 5px;
+}
+
+
