@@ -167,3 +167,10 @@ li {
 }
 
 
+.playlist-container{
+    display: flex;
+}
+
+.playlist-container div{
+    margin-left: 10%;
+}
