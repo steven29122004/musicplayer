@@ -2,6 +2,11 @@
 const songs = [];
 let player; // Variable to hold the YouTube player instance
 let currentSong; // To store the song being added to the playlist
+let isRepeating = false; // Track repeat state
+let isShuffling = false; // Track shuffle state
+let currentPlaylist = []; // Store the current playlist for shuffling
+let currentSongIndex = 0; // Track the current song index
+
 
 // This function is called by the YouTube IFrame API when the API is ready
 function onYouTubeIframeAPIReady() {
@@ -28,9 +33,50 @@ function onPlayerStateChange(event) {
 
 // Function to play a song using the video ID
 function playSong(videoId) {
-    player.loadVideoById(videoId); // Load and play the video by its ID
-    document.getElementById('player').style.display = 'block'; // Show the player
+    console.log(`Playing video with ID: ${videoId}`); // Log the video ID for debugging
+    if (player) { // Check if the player is initialized
+        player.loadVideoById(videoId); // Load and play the video by its ID
+        document.getElementById('player').style.display = 'block'; // Show the player
+    } else {
+        console.error("YouTube player is not initialized."); // Log an error if player is not ready
+    }
 }
+
+// Function to handle song end event
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+        if (isRepeating) {
+            playSong(currentPlaylist[currentSongIndex].audioSrc); // Repeat the current song
+        } else if (isShuffling) {
+            currentSongIndex = Math.floor(Math.random() * currentPlaylist.length); // Get a random index
+            playSong(currentPlaylist[currentSongIndex].audioSrc); // Play a random song
+        } else {
+            currentSongIndex = (currentSongIndex + 1) % currentPlaylist.length; // Move to the next song
+            playSong(currentPlaylist[currentSongIndex].audioSrc); // Play the next song
+        }
+    }
+}
+
+// Function to toggle repeat
+function toggleRepeat(mood) {
+    isRepeating = !isRepeating; // Toggle repeat state
+    const repeatButton = document.getElementById(`${mood}RepeatBtn`);
+    repeatButton.textContent = isRepeating ? "Stop Repeat" : "Repeat"; // Update button text
+}
+
+// Function to toggle shuffle
+function toggleShuffle(mood) {
+    isShuffling = !isShuffling; // Toggle shuffle state
+    const shuffleButton = document.getElementById(`${mood}ShuffleBtn`);
+    shuffleButton.textContent = isShuffling ? "Stop Shuffle" : "Shuffle"; // Update button text
+
+    if (isShuffling) {
+        currentPlaylist = songs.filter(song => song.mood === mood); // Get the current playlist
+        currentSongIndex = Math.floor(Math.random() * currentPlaylist.length); // Start with a random song
+        playSong(currentPlaylist[currentSongIndex].audioSrc); // Play a random song
+    }
+}
+
 
 // Function to add a song via YouTube URL
 function addSongViaYouTube() {
@@ -228,3 +274,11 @@ document.getElementById('filterToggleBtn').addEventListener('click', () => {
 
 // Event listener for mood selection change
 document.getElementById('mood').addEventListener('change', filterSongs); // Filter songs based on mood
+// Event listeners for repeat and shuffle buttons
+document.getElementById('happyRepeatBtn').addEventListener('click', () => toggleRepeat('happy'));
+document.getElementById('happyShuffleBtn').addEventListener('click', () => toggleShuffle('happy'));
+
+// Repeat for other mood playlists
+document.getElementById('sadRepeatBtn').addEventListener('click', () => toggleRepeat('sad'));
+document.getElementById('sadShuffleBtn').addEventListener('click', () => toggleShuffle('sad'));
+// Add similar listeners for other moods...

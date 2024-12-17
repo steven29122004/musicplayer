@@ -26,26 +26,27 @@ header {
     padding: 30px 20px;
 }
 
-.add-song{
+.add-song {
     margin: 0 auto;
     padding: 20px 30px;
     align-items: center;
 }
 
-.search{
+.search {
     margin: 0 auto;
     padding: 0 0 0 40%;
     font-family: 'Courier New', Courier, monospace;
 }
 
-.search input{
+.search input {
     padding: 11px 20px;
 }
 
-.search button{
+.search button {
     padding-bottom: 12px;
     background-color: rgb(69, 170, 204);
 }
+
 .search button:hover {
     font-size: 18px;
     background-color: rgb(87, 182, 182);
@@ -87,7 +88,8 @@ button:hover {
 #filterToggleBtn {
     background: none;
     border: none;
-    font-size: 24px; /* Adjust size of the icon */
+    font-size: 24px;
+    /* Adjust size of the icon */
     cursor: pointer;
     color: white;
 
@@ -103,7 +105,7 @@ button:hover {
 
 }
 
-#filterOptions h2{
+#filterOptions h2 {
     margin-bottom: 20px;
 }
 
@@ -111,7 +113,8 @@ button:hover {
     margin-bottom: 30px;
 }
 
-.songs-list, .playlist {
+.songs-list,
+.playlist {
     margin-top: 20px;
 }
 
@@ -137,14 +140,14 @@ li {
 }
 
 
-#songList button{
+#songList button {
     margin-left: 10px;
     margin-top: 20px;
     border-radius: 10px;
     background-color: rgb(69, 170, 204);
 }
 
-#songList button:hover{
+#songList button:hover {
     font-size: 18px;
     background-color: rgb(87, 182, 182);
     color: rgb(255, 255, 255);
@@ -153,14 +156,14 @@ li {
     margin-left: 5px;
 }
 
-#playlistSection button{
+#playlistSection button {
     margin-left: 10px;
     border-radius: 10px;
     background-color: rgb(69, 170, 204);
 
 }
 
-#playlistSection button:hover{
+#playlistSection button:hover {
     font-size: 18px;
     background-color: rgb(87, 182, 182);
     color: rgb(255, 255, 255);
@@ -169,19 +172,37 @@ li {
     margin-left: 5px;
 }
 
+#playlistSection {
+    outline: 2px solid black;
+    display: block;
+    padding: 40px;
+}
 
 
-.playlist-container{
+.playlist-container {
     display: flex;
     margin-top: 20px;
 }
 
-.playlist-container div{
+.playlist-container div {
     margin: 0 auto;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
+    padding: 20px;
+    outline: 2px solid black;
 }
 
-.song-text{
+.song-text {
     margin-top: 20px;
+}
+
+.song {
+    padding: 20px;
+    outline: 2px solid black;
+    margin: 20px 0;
+}
+
+.song ul {
+    outline: 1px solid black;
+    padding: 0 20px 15px 20px;
 }
