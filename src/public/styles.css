@@ -19,13 +19,47 @@ body {
 header {
     text-align: center;
     margin-bottom: 30px;
+    margin-top: 30px;
+    background-color: rgb(76, 203, 203);
+    text-decoration: underline;
+    color: white;
+    padding: 30px 20px;
+}
+
+.add-song{
+    margin: 0 auto;
+    padding: 20px 30px;
+    align-items: center;
+}
+
+.search{
+    margin: 0 auto;
+    padding: 0 0 0 40%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.search input{
+    padding: 11px 20px;
+}
+
+.search button{
+    padding-bottom: 12px;
+    background-color: rgb(69, 170, 204);
+}
+.search button:hover {
+    font-size: 18px;
+    background-color: rgb(87, 182, 182);
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 8px lightblue;
+    transition: 2s;
+    margin-left: 5px;
 }
 
 .player {
     display: flex;
-    flex-direction: column;
     align-items: center;
     margin-bottom: 30px;
+    margin: 0 auto;
 }
 
 button {
@@ -43,7 +77,10 @@ button:hover {
 
 .filters {
     position: relative;
-    margin-bottom: 30px;
+    display: flex;
+    margin-left: 0;
+    float: right;
+
 }
 
 #filterToggleBtn {
@@ -57,8 +94,13 @@ button:hover {
 #filterOptions {
     margin-top: 10px;
     background-color: #1e1e1e;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: 20px;
+
+}
+
+#filterOptions h2{
+    margin-bottom: 20px;
 }
 
 .add-song {

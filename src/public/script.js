@@ -29,6 +29,7 @@ function onPlayerStateChange(event) {
 // Function to play a song using the video ID
 function playSong(videoId) {
     player.loadVideoById(videoId); // Load and play the video by its ID
+    document.getElementById('player').style.display = 'block'; // Show the player
 }
 
 // Function to add a song via YouTube URL
