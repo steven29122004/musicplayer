@@ -22,6 +22,7 @@
             </div>
         </div>
 
+
         <div class="filters">
             <button id="filterToggleBtn">🔍</button> <!-- Filter icon -->
             <div id="filterOptions" style="display: none;">
@@ -36,7 +37,9 @@
             </div>
         </div>
 
-        <div id="player" style="display: none;"></div>
+        <div id="player" style="display: none;">
+            <!-- YouTube player will be injected here -->
+        </div>
 
         <div class="song">
             <h2 class="song-text">Songs</h2>
@@ -78,6 +81,13 @@
             <button id="confirmAddToPlaylistBtn">Confirm</button>
             <button id="cancelAddToPlaylistBtn">Cancel</button>
         </div>
+    </div>
+
+    <div id="queueDisplay" style="margin-top: 20px;">
+        <h3>Now Playing:</h3>
+        <p id="currentSong">None</p>
+        <h3>Next Up:</h3>
+        <p id="nextSong">None</p>
     </div>
 
     <script src="https://www.youtube.com/iframe_api"></script>

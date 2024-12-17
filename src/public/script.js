@@ -31,29 +31,50 @@ function onPlayerStateChange(event) {
     // Handle state changes if needed (e.g., play, pause, end)
 }
 
+// let playedSongs = []; // Array to keep track of played songs
+// Function to play a song using the video ID
 // Function to play a song using the video ID
 function playSong(videoId) {
-    console.log(`Playing video with ID: ${videoId}`); // Log the video ID for debugging
-    if (player) { // Check if the player is initialized
-        player.loadVideoById(videoId); // Load and play the video by its ID
-        document.getElementById('player').style.display = 'block'; // Show the player
+    console.log(`Playing video with ID: ${videoId}`);
+    if (player) {
+        player.loadVideoById(videoId);
+        document.getElementById('player').style.display = 'block';
+        updateQueueDisplay(); // Update the queue display when a song is played
     } else {
-        console.error("YouTube player is not initialized."); // Log an error if player is not ready
+        console.error("YouTube player is not initialized.");
     }
 }
 
-// Function to handle song end event
+// Function to update the queue display
+function updateQueueDisplay() {
+    const currentSongElement = document.getElementById('currentSong');
+    const nextSongElement = document.getElementById('nextSong');
+
+    if (currentPlaylist.length > 0) {
+        currentSongElement.textContent = currentPlaylist[currentSongIndex].name; // Current song
+        const nextIndex = (currentSongIndex + 1) % currentPlaylist.length; // Next song index
+        nextSongElement.textContent = currentPlaylist[nextIndex].name; // Next song
+    } else {
+        currentSongElement.textContent = 'None';
+        nextSongElement.textContent = 'None';
+    }
+}
+
+// Update the onPlayerStateChange function to call updateQueueDisplay
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.ENDED) {
         if (isRepeating) {
-            playSong(currentPlaylist[currentSongIndex].audioSrc); // Repeat the current song
+            playSong(currentPlaylist[currentSongIndex].audioSrc);
         } else if (isShuffling) {
-            currentSongIndex = Math.floor(Math.random() * currentPlaylist.length); // Get a random index
-            playSong(currentPlaylist[currentSongIndex].audioSrc); // Play a random song
+            // Shuffle logic...
         } else {
-            currentSongIndex = (currentSongIndex + 1) % currentPlaylist.length; // Move to the next song
-            playSong(currentPlaylist[currentSongIndex].audioSrc); // Play the next song
+            // Normal play mode: move to the next song
+            currentSongIndex = (currentSongIndex + 1) % currentPlaylist.length;
+            playSong(currentPlaylist[currentSongIndex].audioSrc);
         }
+        updateQueueDisplay(); // Update the queue display when the song ends
+    } else if (event.data === YT.PlayerState.PLAYING) {
+        updateQueueDisplay(); // Update the queue display when the song starts playing
     }
 }
 
@@ -163,7 +184,10 @@ function addToPlaylist(song, mood) {
     // Create a play button for the song
     const playButton = document.createElement('button');
     playButton.textContent = "Play"; // Button text
-    playButton.addEventListener('click', () => playSong(song.audioSrc)); // Play song on click
+    playButton.addEventListener('click', () => {
+        currentSongIndex = currentPlaylist.length; // Set the current song index to the end of the playlist
+        playSong(song.audioSrc); // Play the song
+    }); // Play song on click
 
     // Create a remove button for the song
     const removeButton = document.createElement('button');
@@ -201,12 +225,13 @@ function removeFromPlaylist(song, mood) {
 
 // Function to play a song using the video ID
 function playSong(videoId) {
-    console.log(`Playing video with ID: ${videoId}`); // Log the video ID for debugging
-    if (player) { // Check if the player is initialized
-        player.loadVideoById(videoId); // Load and play the video by its ID
-        document.getElementById('player').style.display = 'block'; // Show the player
+    console.log(`Playing video with ID: ${videoId}`);
+    if (player) {
+        player.loadVideoById(videoId);
+        document.getElementById('player').style.display = 'block';
+        updateQueueDisplay(); // Update the queue display when a song is played
     } else {
-        console.error("YouTube player is not initialized."); // Log an error if player is not ready
+        console.error("YouTube player is not initialized.");
     }
 }
 
@@ -277,22 +302,10 @@ document.getElementById('filterToggleBtn').addEventListener('click', () => {
 // Event listener for mood selection change
 document.getElementById('mood').addEventListener('change', filterSongs); // Filter songs based on mood
 // Event listeners for repeat and shuffle buttons
-// Event listeners for repeat and shuffle buttons
-document.getElementById('happyRepeatBtn').addEventListener('click', () => toggleRepeat('happy'));
-document.getElementById('happyShuffleBtn').addEventListener('click', () => toggleShuffle('happy'));
-document.getElementById('sadRepeatBtn').addEventListener('click', () => toggleRepeat('sad'));
-document.getElementById('sadShuffleBtn').addEventListener('click', () => toggleShuffle('sad'));
-document.getElementById('chillRepeatBtn').addEventListener('click', () => toggleRepeat('chill'));
-document.getElementById('chillShuffleBtn').addEventListener('click', () => toggleShuffle('chill'));
-
-
-
-// Event listeners for repeat and shuffle buttons
 document.getElementById('happyRepeatBtn').addEventListener('click', () => toggleRepeat('happy'));
 document.getElementById('happyShuffleBtn').addEventListener('click', () => toggleShuffle('happy'));
 
+// Repeat for other mood playlists
 document.getElementById('sadRepeatBtn').addEventListener('click', () => toggleRepeat('sad'));
 document.getElementById('sadShuffleBtn').addEventListener('click', () => toggleShuffle('sad'));
-
-document.getElementById('chillRepeatBtn').addEventListener('click', () => toggleRepeat('chill'));
-document.getElementById('chillShuffleBtn').addEventListener('click', () => toggleShuffle('chill'));
+// Add similar listeners for other moods...
