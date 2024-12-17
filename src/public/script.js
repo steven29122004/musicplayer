@@ -61,14 +61,16 @@ function onPlayerStateChange(event) {
 function toggleRepeat(mood) {
     isRepeating = !isRepeating; // Toggle repeat state
     const repeatButton = document.getElementById(`${mood}RepeatBtn`);
-    repeatButton.textContent = isRepeating ? "Stop Repeat" : "Repeat"; // Update button text
+    repeatButton.innerHTML = isRepeating ? '<i class="fas fa-redo-alt"></i>' : '<i class="fas fa-redo"></i>'; // Change icon
+    repeatButton.classList.toggle('button-active'); // Toggle active class
 }
 
 // Function to toggle shuffle
 function toggleShuffle(mood) {
     isShuffling = !isShuffling; // Toggle shuffle state
     const shuffleButton = document.getElementById(`${mood}ShuffleBtn`);
-    shuffleButton.textContent = isShuffling ? "Stop Shuffle" : "Shuffle"; // Update button text
+    shuffleButton.innerHTML = isShuffling ? '<i class="fas fa-random"></i>' : '<i class="fas fa-random"></i>'; // Change icon (you can use different icons if desired)
+    shuffleButton.classList.toggle('button-active'); // Toggle active class
 
     if (isShuffling) {
         currentPlaylist = songs.filter(song => song.mood === mood); // Get the current playlist

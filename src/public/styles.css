@@ -77,6 +77,14 @@ button:hover {
     background-color: rgb(69, 170, 204);
 }
 
+.button-active {
+    background-color: darkblue; /* Change background color */
+}
+
+.button-active i {
+    color: blue; /* Change icon color */
+}
+
 .filters {
     position: relative;
     display: flex;
