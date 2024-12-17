@@ -65,14 +65,14 @@ header {
 button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #1db954;
+    background-color: rgb(69, 170, 204);
     color: white;
     border: none;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #1ed760;
+    background-color: rgb(69, 170, 204);
 }
 
 .filters {
@@ -89,6 +89,8 @@ button:hover {
     font-size: 24px; /* Adjust size of the icon */
     cursor: pointer;
     color: white;
+
+
 }
 
 #filterOptions {
@@ -129,4 +131,20 @@ li {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
+}
+
+
+#songList button{
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: rgb(69, 170, 204);
+}
+
+#songList button:hover{
+    font-size: 18px;
+    background-color: rgb(87, 182, 182);
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 8px lightblue;
+    transition: 2s;
+    margin-left: 5px;
 }
