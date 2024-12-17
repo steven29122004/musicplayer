@@ -117,7 +117,13 @@ function addToPlaylist(song, mood) {
     playButton.textContent = "Play"; // Button text
     playButton.addEventListener('click', () => playSong(song.audioSrc)); // Play song on click
 
+    // Create a remove button for the song
+    const removeButton = document.createElement('button');
+    removeButton.textContent = "Remove"; // Button text
+    removeButton.addEventListener('click', () => removeFromPlaylist(song, mood)); // Remove song on click
+
     newRow.appendChild(playButton); // Add play button to the new list item
+    newRow.appendChild(removeButton); // Add remove button to the new list item
     playlistContainer.appendChild(newRow); // Append the new song to the appropriate playlist
 
     // Show the playlist section if it has songs
@@ -125,6 +131,24 @@ function addToPlaylist(song, mood) {
     
     // Show the entire playlist section if any song is added
     document.getElementById('playlistSection').style.display = 'block';
+}
+
+// Function to remove a song from the playlist
+function removeFromPlaylist(song, mood) {
+    // Get the appropriate playlist container based on the mood
+    const playlistContainer = document.getElementById(`${mood}Songs`).getElementsByTagName("ul")[0];
+
+    // Find the song in the playlist and remove it
+    const songItems = playlistContainer.getElementsByTagName("li");
+    for (let i = 0; i < songItems.length; i++) {
+        if (songItems[i].textContent.includes(song.name)) {
+            playlistContainer.removeChild(songItems[i]); // Remove the song from the playlist
+            break; // Exit the loop once the song is found and removed
+        }
+    }
+
+    // Hide the playlist if it has no songs left
+    togglePlaylistVisibility(mood);
 }
 
 // Function to play a song using the video ID

@@ -128,7 +128,8 @@ li {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #1e1e1e;
+    background-color: #04aea8;
+    color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -138,6 +139,7 @@ li {
 
 #songList button{
     margin-left: 10px;
+    margin-top: 20px;
     border-radius: 10px;
     background-color: rgb(69, 170, 204);
 }
@@ -168,8 +170,10 @@ li {
 }
 
 
+
 .playlist-container{
     display: flex;
+    margin-top: 20px;
 }
 
 .playlist-container div{
