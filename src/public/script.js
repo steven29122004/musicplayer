@@ -277,10 +277,22 @@ document.getElementById('filterToggleBtn').addEventListener('click', () => {
 // Event listener for mood selection change
 document.getElementById('mood').addEventListener('change', filterSongs); // Filter songs based on mood
 // Event listeners for repeat and shuffle buttons
+// Event listeners for repeat and shuffle buttons
+document.getElementById('happyRepeatBtn').addEventListener('click', () => toggleRepeat('happy'));
+document.getElementById('happyShuffleBtn').addEventListener('click', () => toggleShuffle('happy'));
+document.getElementById('sadRepeatBtn').addEventListener('click', () => toggleRepeat('sad'));
+document.getElementById('sadShuffleBtn').addEventListener('click', () => toggleShuffle('sad'));
+document.getElementById('chillRepeatBtn').addEventListener('click', () => toggleRepeat('chill'));
+document.getElementById('chillShuffleBtn').addEventListener('click', () => toggleShuffle('chill'));
+
+
+
+// Event listeners for repeat and shuffle buttons
 document.getElementById('happyRepeatBtn').addEventListener('click', () => toggleRepeat('happy'));
 document.getElementById('happyShuffleBtn').addEventListener('click', () => toggleShuffle('happy'));
 
-// Repeat for other mood playlists
 document.getElementById('sadRepeatBtn').addEventListener('click', () => toggleRepeat('sad'));
 document.getElementById('sadShuffleBtn').addEventListener('click', () => toggleShuffle('sad'));
-// Add similar listeners for other moods...
+
+document.getElementById('chillRepeatBtn').addEventListener('click', () => toggleRepeat('chill'));
+document.getElementById('chillShuffleBtn').addEventListener('click', () => toggleShuffle('chill'));
