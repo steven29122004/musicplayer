@@ -6,8 +6,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
 }
 
 .container {
@@ -96,7 +96,8 @@ button:hover {
 
 #filterOptions {
     margin-top: 10px;
-    background-color: #1e1e1e;
+    background-color: #2d99cb;
+    color: white;
     padding: 10px 20px;
     border-radius: 20px;
 
@@ -172,5 +173,11 @@ li {
 }
 
 .playlist-container div{
-    margin-left: 10%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.song-text{
+    margin-top: 20px;
 }
